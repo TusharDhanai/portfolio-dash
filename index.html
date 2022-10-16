@@ -542,9 +542,9 @@
                         <div class="card">
                             <div class="card-body" id="line-chart"></div>
                             <div class="card-footer">
-                                <div class="row">
+                                <div class="row px-3">
                                         <label for="x-label1">Show Data from: </label>
-                                    <select id="x-label1">
+                                    <select class="form-control" id="x-label1">
                                         <option value="January">January</option>
                                         <option value="February">February</option>
                                         <option value="March">March</option>
@@ -558,7 +558,7 @@
                                         <option value="December">December</option>
                                     </select>
                                     <label for="x-label2">to</label>
-                                    <select id="x-label2">
+                                    <select class="form-control" id="x-label2">
                                         <option value="January">January</option>
                                         <option value="February">February</option>
                                         <option value="March">March</option>
@@ -582,6 +582,9 @@
                                     <button id="line-btn" class="btn btn-primary">Generate Chart</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card mt-4 p-5">
+                            <div class="card-body p-5" id="donut-chart"></div>
                         </div>
                         <!-- ---------------------------- -->
                         <!-- ----- Line Chart Start ----- -->
@@ -657,82 +660,8 @@
     <!-- Select 2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script>
-        $(function() {
-            // Rendering chart
-            const Months = [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
-                'August',
-                'September',
-                'October',
-                'November',
-                'December'
-            ];
-            var xAxis = Months;
-            var yAxis = [30,40,35,50,49,60,70,91];
-            var options = {
-            chart: {
-                type: 'line'
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            markers: {
-                size: 5
-            },
-            series: [{
-                name: 'sales',
-                data: yAxis
-            }],
-            xaxis: {
-                categories: xAxis
-            }
-            }
-
-            var chart = new ApexCharts(document.querySelector("#line-chart"), options);
-
-            chart.render();
-
-            // change chart data
-            document.querySelector('#line-btn').addEventListener('click',function(e) {
-                e.preventDefault();     // prevent default behaviour
-                let startMonth = document.querySelector('#x-label1').value;
-                let endMonth = document.querySelector('#x-label2').value;
-                let yData = document.querySelector('#y-label').value.split(',');    
-                // Mapping the selected months
-                let xData = Months.filter(item => {
-                    if (Months.indexOf(item) <= Months.indexOf(endMonth)
-                    && Months.indexOf(item) >= Months.indexOf(startMonth)) 
-                        return true;
-                    return false;
-                }).map(item => item)
-
-                while (yData.length > xData.length)
-                    yData.pop()
-
-                chart.updateOptions({
-                    series: [{
-                        name: 'sales',
-                        data: yData
-                    }],
-                    xaxis: {
-                        categories: xData
-                    }
-                })
-            })
-        })
-        
-        // Select box
-        $(function() {
-            $('select').select2();
-        })
-    </script>
+    <script src="lineChart.js"></script>
+    <script src="donutChart.js"></script>
 </body>
 
 </html>
