@@ -17,22 +17,22 @@ $(function() {
     var xAxis = Months;
     var yAxis = [30,40,35,50,49,60,70,91];
     var options = {
-    chart: {
-        type: 'line'
-    },
-    stroke: {
-        curve: 'smooth'
-    },
-    markers: {
-        size: 5
-    },
-    series: [{
-        name: 'sales',
-        data: yAxis
-    }],
-    xaxis: {
-        categories: xAxis
-    }
+        chart: {
+            type: 'line'
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        markers: {
+            size: 5
+        },
+        series: [{
+            name: 'sales',
+            data: yAxis
+        }],
+        xaxis: {
+            categories: xAxis
+        }
     }
 
     var chart = new ApexCharts(document.querySelector("#line-chart"), options);
